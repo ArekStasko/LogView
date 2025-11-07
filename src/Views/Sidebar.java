@@ -1,12 +1,16 @@
 package Views;
 
+import Services.FileService;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Sidebar {
     private JPanel wrapper;
+    private FileService fileService;
 
     public Sidebar() {
+        fileService = new FileService();
         wrapper = new JPanel();
         wrapper.setBackground(Color.decode("#252624"));
         JButton sourceButton = BuildSourceButton();
@@ -19,6 +23,7 @@ public class Sidebar {
 
     private JButton BuildSourceButton(){
         JButton button = BuildButtonStyles(new JButton("Source +"));
+        button.addActionListener(e -> fileService.GetLogDirectory());
         return button;
     }
 
