@@ -12,6 +12,12 @@ public class AppList {
     }
 
     public JPanel GetAppList(){
+        BuildAppList();
         return wrapper;
+    }
+
+    private void BuildAppList(){
+        var element = new AppElement();
+        wrapper.add(element.getPanel());
     }
 }
