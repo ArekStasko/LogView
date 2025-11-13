@@ -29,6 +29,7 @@ public class AppList {
         if(files == null) return;
         while(files.hasNext()){
             var file = files.next();
+            System.out.println(file);
             var element = new AppElement(file, "");
             wrapper.add(element.getPanel());
         }

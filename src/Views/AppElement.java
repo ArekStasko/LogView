@@ -12,11 +12,17 @@ public class AppElement {
         mainPanel.setBackground(Color.decode("#252624"));
         mainPanel.setPreferredSize(new Dimension(220, 140));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        mainPanel.add(new JLabel(title));
-        mainPanel.add(new JLabel(date));
+        mainPanel.add(GetLabel(title));
+        mainPanel.add(GetLabel(date));
     }
 
     public JPanel getPanel(){
         return mainPanel;
+    }
+
+    private JLabel GetLabel(String text){
+        JLabel label = new JLabel(text);
+        label.setForeground(Color.WHITE);
+        return label;
     }
 }
