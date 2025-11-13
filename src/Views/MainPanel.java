@@ -33,6 +33,7 @@ public class MainPanel {
                 this.fileService,
                 () -> {
                     this.appList.RenderFiles();
+                    frame.revalidate();
                     frame.repaint();
                 }
         );
