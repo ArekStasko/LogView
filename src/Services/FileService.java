@@ -33,7 +33,6 @@ public class FileService {
     private void GetLogFiles(){
         var listFiles = selectedFolder.listFiles();
         if(listFiles == null) return;
-
         fileNames = Stream.of(listFiles)
                 .filter(file -> !file.isDirectory())
                 .map(file -> {

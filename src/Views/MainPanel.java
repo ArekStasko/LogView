@@ -4,9 +4,12 @@ import Services.FileService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class MainPanel {
     FileService fileService;
+    Sidebar sidebar;
+    AppList appList;
     JFrame frame;
     JPanel panel;
 
@@ -25,9 +28,14 @@ public class MainPanel {
         panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.BLACK);
 
-        Sidebar sidebar = new Sidebar(this.fileService);
-        AppList appList = new AppList(this.fileService);
-
+        appList = new AppList(this.fileService);
+        sidebar = new Sidebar(
+                this.fileService,
+                () -> {
+                    this.appList.RenderFiles();
+                    frame.repaint();
+                }
+        );
         panel.add(sidebar.GetSidebar(), BorderLayout.WEST);
         panel.add(appList.GetAppList(), BorderLayout.CENTER);
 

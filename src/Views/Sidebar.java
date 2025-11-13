@@ -1,5 +1,6 @@
 package Views;
 
+import Models.OnSourceSelected;
 import Services.FileService;
 
 import javax.swing.*;
@@ -8,9 +9,12 @@ import java.awt.*;
 public class Sidebar {
     private JPanel wrapper;
     private FileService fileService;
+    private OnSourceSelected onSourceSelected;
 
-    public Sidebar(FileService fileService) {
+    public Sidebar(FileService fileService, OnSourceSelected onFolderSelected) {
         this.fileService = fileService;
+        this.onSourceSelected = onFolderSelected;
+
         wrapper = new JPanel();
         wrapper.setBackground(Color.decode("#252624"));
         JButton sourceButton = BuildSourceButton();
@@ -23,7 +27,10 @@ public class Sidebar {
 
     private JButton BuildSourceButton(){
         JButton button = BuildButtonStyles(new JButton("Source +"));
-        button.addActionListener(e -> fileService.GetLogDirectory());
+        button.addActionListener(e -> {
+            fileService.GetLogDirectory();
+            onSourceSelected.invoke();
+        });
         return button;
     }
 
