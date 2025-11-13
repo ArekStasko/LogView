@@ -2,7 +2,7 @@ package Services;
 
 import javax.swing.*;
 import java.io.File;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -25,8 +25,9 @@ public class FileService {
         }
     }
 
-    public void GetFileNames(){
-        fileNames.forEach(System.out::println);
+    public Iterator<String> GetFileNamesIterator(){
+        if(fileNames == null) return null;
+        return fileNames.iterator();
     }
 
     private void GetLogFiles(){

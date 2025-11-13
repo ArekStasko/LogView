@@ -9,14 +9,12 @@ public class Sidebar {
     private JPanel wrapper;
     private FileService fileService;
 
-    public Sidebar() {
-        fileService = new FileService();
+    public Sidebar(FileService fileService) {
+        this.fileService = fileService;
         wrapper = new JPanel();
         wrapper.setBackground(Color.decode("#252624"));
         JButton sourceButton = BuildSourceButton();
         wrapper.add(sourceButton);
-        JButton testButton = BuildTestButton();
-        wrapper.add(testButton);
     }
 
     public JPanel GetSidebar() {
@@ -26,12 +24,6 @@ public class Sidebar {
     private JButton BuildSourceButton(){
         JButton button = BuildButtonStyles(new JButton("Source +"));
         button.addActionListener(e -> fileService.GetLogDirectory());
-        return button;
-    }
-
-    private JButton BuildTestButton(){
-        JButton button = BuildButtonStyles(new JButton("Test Files"));
-        button.addActionListener(e -> fileService.GetFileNames());
         return button;
     }
 
