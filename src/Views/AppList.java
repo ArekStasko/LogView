@@ -31,7 +31,24 @@ public class AppList {
             var file = files.next();
             System.out.println(file);
             var element = new AppElement(file, "");
-            wrapper.add(element.getPanel());
+            var openButton = BuildButton("Open");
+            var panel = element.getPanel();
+            panel.add(openButton);
+            wrapper.add(panel);
         }
+    }
+
+    private JButton BuildButton(String actionName){
+        var button = new JButton(actionName);
+        button.setBackground(Color.decode("#1f1e1d"));
+        button.setFocusable(true);
+        button.requestFocusInWindow();
+        button.setBorder(BorderFactory.createLineBorder(Color.decode("#3f403e")));
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+
+        button.setPreferredSize(new Dimension(120, 40));
+        button.setFont(new Font("Arial", Font.BOLD, 8));
+        return button;
     }
 }
