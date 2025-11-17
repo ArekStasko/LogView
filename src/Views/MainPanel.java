@@ -28,7 +28,7 @@ public class MainPanel {
         panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.BLACK);
 
-        appList = new AppList(this.fileService);
+        appList = new AppList(this.fileService, frame);
         sidebar = new Sidebar(
                 this.fileService,
                 () -> {

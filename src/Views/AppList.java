@@ -4,14 +4,15 @@ import Services.FileService;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class AppList {
+    private JFrame frame;
     private JPanel wrapper;
     private FileService fileService;
 
-    public AppList(FileService fileService) {
+    public AppList(FileService fileService, JFrame frame) {
         this.fileService = fileService;
+        this.frame = frame;
         wrapper = new JPanel();
         wrapper.setBackground(Color.decode("#1f1e1d"));
     }
@@ -29,9 +30,9 @@ public class AppList {
         if(files == null) return;
         while(files.hasNext()){
             var file = files.next();
-            System.out.println(file);
             var element = new AppElement(file, "");
             var openButton = BuildButton("Open");
+            openButton.addActionListener(e -> new AppLogs(fileService, file, frame));
             var panel = element.getPanel();
             panel.add(openButton);
             wrapper.add(panel);
