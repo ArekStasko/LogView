@@ -2,6 +2,9 @@ package Services;
 
 import javax.swing.*;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -41,5 +44,9 @@ public class FileService {
                     return null;
                 })
                 .collect(Collectors.toSet());
+    }
+
+    private void GetLogs(String fileName){
+        
     }
 }

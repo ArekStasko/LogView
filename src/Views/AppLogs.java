@@ -32,4 +32,8 @@ public class AppLogs {
         dialog.setLocationRelativeTo(frame);
         dialog.setVisible(true);
     }
+
+    private void DisplayLogs(){
+        var data = fileService.GetLogs(fileName);
+    }
 }
