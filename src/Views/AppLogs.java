@@ -1,6 +1,6 @@
 package Views;
 
-import Services.FileService;
+import Services.SerialPortService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,12 +8,12 @@ import java.awt.*;
 public class AppLogs {
     private JFrame frame;
     private JDialog dialog;
-    private FileService fileService;
+    private SerialPortService serialPortService;
     private String fileName;
 
-    public AppLogs(FileService fileService, String fileName, JFrame frame) {
+    public AppLogs(SerialPortService serialPortService, String fileName, JFrame frame) {
         this.frame = frame;
-        this.fileService = fileService;
+        this.serialPortService = serialPortService;
         this.fileName = fileName;
         BuildAppLogs();
     }
@@ -34,6 +34,6 @@ public class AppLogs {
     }
 
     private void DisplayLogs(){
-        var data = fileService.GetLogs(fileName);
+        var data = serialPortService.GetLogs(fileName);
     }
 }

@@ -1,6 +1,6 @@
 package Views;
 
-import Services.FileService;
+import Services.SerialPortService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,10 +8,10 @@ import java.awt.*;
 public class AppList {
     private JFrame frame;
     private JPanel wrapper;
-    private FileService fileService;
+    private SerialPortService serialPortService;
 
-    public AppList(FileService fileService, JFrame frame) {
-        this.fileService = fileService;
+    public AppList(SerialPortService serialPortService, JFrame frame) {
+        this.serialPortService = serialPortService;
         this.frame = frame;
         wrapper = new JPanel();
         wrapper.setBackground(Color.decode("#1f1e1d"));
@@ -26,13 +26,13 @@ public class AppList {
     }
 
     private void BuildAppList(){
-        var files = fileService.GetFileNamesIterator();
+        var files = serialPortService.GetFileNamesIterator();
         if(files == null) return;
         while(files.hasNext()){
             var file = files.next();
             var element = new AppElement(file, "");
             var openButton = BuildButton("Open");
-            openButton.addActionListener(e -> new AppLogs(fileService, file, frame));
+            openButton.addActionListener(e -> new AppLogs(serialPortService, file, frame));
             var panel = element.getPanel();
             panel.add(openButton);
             wrapper.add(panel);

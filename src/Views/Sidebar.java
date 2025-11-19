@@ -1,18 +1,18 @@
 package Views;
 
 import Models.OnSourceSelected;
-import Services.FileService;
+import Services.SerialPortService;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Sidebar {
     private JPanel wrapper;
-    private FileService fileService;
+    private SerialPortService serialPortService;
     private OnSourceSelected onSourceSelected;
 
-    public Sidebar(FileService fileService, OnSourceSelected onFolderSelected) {
-        this.fileService = fileService;
+    public Sidebar(SerialPortService serialPortService, OnSourceSelected onFolderSelected) {
+        this.serialPortService = serialPortService;
         this.onSourceSelected = onFolderSelected;
 
         wrapper = new JPanel();
@@ -28,7 +28,7 @@ public class Sidebar {
     private JButton BuildSourceButton(){
         JButton button = BuildButtonStyles(new JButton("Source +"));
         button.addActionListener(e -> {
-            fileService.GetLogDirectory();
+            serialPortService.GetLogDirectory();
             onSourceSelected.invoke();
         });
         return button;

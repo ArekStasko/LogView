@@ -2,30 +2,24 @@ package Services;
 
 import javax.swing.*;
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import com.fazecast.jSerialComm.SerialPort;
 
-public class FileService {
+public class SerialPortService {
+    SerialPort[] serialPorts = SerialPort.getCommPorts();
     Set<String> fileNames;
     JFileChooser fileChooser;
     File selectedFolder;
 
-    public FileService() {
+    public SerialPortService() {
         fileChooser = new JFileChooser();
     }
 
-    public void GetLogDirectory(){
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int result = fileChooser.showOpenDialog(null);
-        if(result == JFileChooser.APPROVE_OPTION){
-            selectedFolder = fileChooser.getSelectedFile();
-            GetLogFiles();
-        }
+    public SerialPort[] GetComPorts(){
+        return serialPorts;
     }
 
     public Iterator<String> GetFileNamesIterator(){

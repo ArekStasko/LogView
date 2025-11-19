@@ -1,20 +1,19 @@
 package Views;
 
-import Services.FileService;
+import Services.SerialPortService;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class MainPanel {
-    FileService fileService;
+    SerialPortService serialPortService;
     Sidebar sidebar;
     AppList appList;
     JFrame frame;
     JPanel panel;
 
     public MainPanel() {
-        this.fileService = new FileService();
+        this.serialPortService = new SerialPortService();
         frame = new JFrame();
         frame.setTitle("LogView");
         frame.setSize(800, 600);
@@ -28,9 +27,9 @@ public class MainPanel {
         panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.BLACK);
 
-        appList = new AppList(this.fileService, frame);
+        appList = new AppList(this.serialPortService, frame);
         sidebar = new Sidebar(
-                this.fileService,
+                this.serialPortService,
                 () -> {
                     this.appList.RenderFiles();
                     frame.revalidate();
