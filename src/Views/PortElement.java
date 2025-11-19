@@ -3,10 +3,10 @@ package Views;
 import javax.swing.*;
 import java.awt.*;
 
-public class AppElement {
+public class PortElement {
     private JPanel mainPanel;
 
-    public AppElement(String title, String date){
+    public PortElement(String title, String date){
         mainPanel = new JPanel();
         mainPanel.setBorder(BorderFactory.createLineBorder(Color.decode("#3f403e")));
         mainPanel.setBackground(Color.decode("#252624"));

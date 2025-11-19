@@ -30,9 +30,9 @@ public class AppList {
         if(ports == null) return;
         for(int i = 0; i < ports.length; i++){
             var port = ports[i];
-            var element = new AppElement(port.getSystemPortName(), port.getDescriptivePortName());
+            var element = new PortElement(port.getSystemPortName(), port.getDescriptivePortName());
             var monitorButton = BuildButton("Monitor");
-            monitorButton.addActionListener(e -> new AppLogs(serialPortService, file, frame));
+            monitorButton.addActionListener(e -> new PortMonitoringDialog(serialPortService, port, frame));
             var panel = element.getPanel();
             panel.add(monitorButton);
             wrapper.add(panel);

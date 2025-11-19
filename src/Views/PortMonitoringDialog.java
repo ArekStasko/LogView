@@ -1,20 +1,21 @@
 package Views;
 
 import Services.SerialPortService;
+import com.fazecast.jSerialComm.SerialPort;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AppLogs {
+public class PortMonitoringDialog {
     private JFrame frame;
     private JDialog dialog;
     private SerialPortService serialPortService;
-    private String fileName;
+    private SerialPort port;
 
-    public AppLogs(SerialPortService serialPortService, String fileName, JFrame frame) {
+    public PortMonitoringDialog(SerialPortService serialPortService, SerialPort port, JFrame frame) {
         this.frame = frame;
         this.serialPortService = serialPortService;
-        this.fileName = fileName;
+        this.port = port;
         BuildAppLogs();
     }
 
@@ -23,17 +24,13 @@ public class AppLogs {
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setSize(800, 600);
         dialog.setBackground(Color.decode("#1f1e1d"));
-        dialog.setTitle("Logs for " + fileName);
+        dialog.setTitle(port.getDescriptivePortName());
 
         JPanel panel = new JPanel();
-        panel.add(new JLabel("Logs for " + fileName));
+        panel.add(new JLabel("Logs for " + port.getDescriptivePortName()));
         dialog.getContentPane().add(panel);
         dialog.pack();
         dialog.setLocationRelativeTo(frame);
         dialog.setVisible(true);
-    }
-
-    private void DisplayLogs(){
-        var data = serialPortService.GetLogs(fileName);
     }
 }
